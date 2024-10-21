@@ -1,7 +1,9 @@
 #bin
 *.o
+*.elf
 
 #output
+output*/
 *.err
 *.out
 *.h5

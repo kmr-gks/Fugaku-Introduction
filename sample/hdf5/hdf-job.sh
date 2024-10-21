@@ -4,7 +4,6 @@
 #PJM -L  "elapse=10:00"   # 経過時間制限 10min
 #PJM --mpi "shape=4"         # 静的プロセス形状
 #PJM --mpi "proc=4"          # 静的プロセスの最大数4
-#PJM -g hp999999            # 課題のグループ指定
 #PJM -x PJM_LLIO_GFSCACHE=/vol0004 #spackを使うとき指定
 #
 
@@ -13,8 +12,15 @@ echo module loading...
 . /vol0004/apps/oss/spack/share/spack/setup-env.sh
 spack load /yhazdvl
 
-echo "./hdfsample.o"
-./hdf5test.o
-echo "mpiexec -n 4 ./hdfsample.o"
-mpiexec -n 4 ./hdfsample.o
-echo "hdfsample.o done"
+echo "run directly"
+
+./hdf-frt.elf
+./hdf-fcc.elf
+
+echo "mpiexec frt"
+
+mpiexec -n 4 ./hdf-frt.elf
+echo "mpiexec fcc"
+
+mpiexec -n 4 ./hdf-fcc.elf
+echo "done"

@@ -30,12 +30,12 @@ spack load /zzyvoyb
 
 LDFLAGS=-lhdf5
 
-icpx $LDFLAGS hdfsample.c -o hdfsample.o
+icpx $LDFLAGS hdfsample.c -o hdf-c-intel.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
     echo "コンパイル成功！"
-    ./hdfsample.o
+    ./hdf-c-intel.elf
 else
     echo "ERROR コンパイル失敗。"
 fi

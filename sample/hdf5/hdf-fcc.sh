@@ -27,12 +27,9 @@ spack load /yhazdvl
 #spack load /lwcglyr
 #spack load /zzyvoyb
 
-echo $LD_LIBRARY_PATH
+LDFLAGS=-lhdf5
 
-LDFLAGS="-lhdf5_fortran -lhdf5 -I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/hdf5-1.14.3-yhazdvld6vknkhmbcqrbl34ifsac2hao/include"
-
-#インクルードパスを手動で指定しないといけない
-mpifrtpx $LDFLAGS hdfsample.f90
+mpifccpx $LDFLAGS hdfsample.c -o hdf-fcc.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
