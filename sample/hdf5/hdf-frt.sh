@@ -27,9 +27,7 @@ spack load /yhazdvl
 #spack load /lwcglyr
 #spack load /zzyvoyb
 
-echo $LD_LIBRARY_PATH
-
-LDFLAGS="-lhdf5_fortran -lhdf5 -I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/hdf5-1.14.3-yhazdvld6vknkhmbcqrbl34ifsac2hao/include"
+LDFLAGS="-lhdf5_fortran -I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/hdf5-1.14.3-yhazdvld6vknkhmbcqrbl34ifsac2hao/include"
 
 #インクルードパスを手動で指定しないといけない
 #出力ファイル名をhdf-frt.oとするとエラー

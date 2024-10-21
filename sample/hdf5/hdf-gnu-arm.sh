@@ -1,8 +1,7 @@
 #!/bin/bash
 
-. /opt/intel/oneapi/setvars.sh intel64
+. /vol0004/apps/oss/gcc-arm-11.2.1/setup-env.sh
 . /vol0004/apps/oss/spack/share/spack/setup-env.sh
-
 # spack find -l hdf5で一覧表示
 
 #linux-rhel8-a64fx / fj@4.8.1
@@ -14,7 +13,7 @@
 #spack load /sr23pzm
 #spack load /kybzesz
 #spack load /ewlqc4w
-#spack load /yhazdvl
+spack load /yhazdvl
 
 #linux-rhel8-a64fx / gcc@8.5.0
 #spack load /a4zpxqt
@@ -26,31 +25,28 @@
 #linux-rhel8-skylake_avx512 / gcc@8.5.0
 #spack load /zpysinb
 #spack load /lwcglyr
-spack load /zzyvoyb
+#spack load /zzyvoyb
 
 LDFLAGS=-lhdf5
 
-icpx $LDFLAGS hdfsample.c -o hdf-c-intel.elf
+echo "計算ノード向け(C)"
+
+gcc -c hdfsample.c -o hdf-gcc.o && mpifccpx hdf-gcc.o $LDFLAGS -o hdf-gcc.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
     echo "コンパイル成功！"
-    ./hdf-c-intel.elf
 else
     echo "ERROR コンパイル失敗。"
 fi
 
-echo "library path="
+echo "計算ノード向け(Fortran)"
 
-#すべての互換性のあるhdf5インクルードパスにはmodファイルがないためコンパイルできない
-LDFLAGS="-lhdf5_fortran -lhdf5"
-
-ifx $LDFLAGS hdfsample.f90
+gfortran -c hdfsample.c -o hdf-gfort.o && mpifccpx hdf-gfort.o $LDFLAGS -o hdf-gfort.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
     echo "コンパイル成功！"
-    ./hdf-c-intel.elf
 else
     echo "ERROR コンパイル失敗。"
 fi

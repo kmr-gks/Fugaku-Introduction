@@ -1,8 +1,6 @@
 #!/bin/bash
 
-. /opt/intel/oneapi/setvars.sh intel64
 . /vol0004/apps/oss/spack/share/spack/setup-env.sh
-
 # spack find -l hdf5で一覧表示
 
 #linux-rhel8-a64fx / fj@4.8.1
@@ -30,27 +28,26 @@ spack load /zzyvoyb
 
 LDFLAGS=-lhdf5
 
-icpx $LDFLAGS hdfsample.c -o hdf-c-intel.elf
+echo "ログインノード向け(C)"
+
+gcc hdfsample.c $LDFLAGS -o hdf-gcc-x86.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
     echo "コンパイル成功！"
-    ./hdf-c-intel.elf
+    ./hdf-gcc-x86.elf
 else
     echo "ERROR コンパイル失敗。"
 fi
 
-echo "library path="
+echo "ログインノード向け(Fortran)"
 
-#すべての互換性のあるhdf5インクルードパスにはmodファイルがないためコンパイルできない
-LDFLAGS="-lhdf5_fortran -lhdf5"
-
-ifx $LDFLAGS hdfsample.f90
+gfortran hdfsample.c $LDFLAGS -o hdf-gfort-x86.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
     echo "コンパイル成功！"
-    ./hdf-c-intel.elf
+    ./hdf-gfort-x86.elf
 else
     echo "ERROR コンパイル失敗。"
 fi
