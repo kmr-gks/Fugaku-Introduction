@@ -23,9 +23,7 @@ spack load /upvlzyl
 #linux-rhel8-skylake_avx512 / gcc@8.5.0
 #spack load /jsp5keo
 
-echo $LD_LIBRARY_PATH
-
-LDFLAGS="-I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.11.1/fftw-3.3.10-upvlzylw3inllggvpvxppuar7copfqdg/include -L /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.11.1/fftw-3.3.10-upvlzylw3inllggvpvxppuar7copfqdg/lib -lfftw3 -lfftw3_fortran"
+LDFLAGS="-I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.11.1/fftw-3.3.10-upvlzylw3inllggvpvxppuar7copfqdg/include -lfftw3"
 
 mpifrtpx $LDFLAGS fftwsample.f90 -o fftw-frt.elf
 

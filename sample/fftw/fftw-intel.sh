@@ -36,7 +36,7 @@ else
     echo "ERROR コンパイル失敗。"
 fi
 
-LDFLAGS="-lfftw3_fortran -lfftw3 -I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-skylake_avx512/gcc-8.5.0/fftw-3.3.10-jsp5keotxixr2m3iclsxy4z3r4qqs6hf/include -L /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-skylake_avx512/gcc-8.5.0/fftw-3.3.10-jsp5keotxixr2m3iclsxy4z3r4qqs6hf/lib"
+LDFLAGS="-lfftw3 -I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-skylake_avx512/gcc-8.5.0/fftw-3.3.10-jsp5keotxixr2m3iclsxy4z3r4qqs6hf/include"
 
 ifx $LDFLAGS fftwsample.f90 -o fftw-f-intel.elf
 

@@ -28,7 +28,9 @@ LDFLAGS=-lfftw3
 
 echo "計算ノード向け(C)"
 
-gcc -c fftwsample.c -o fftw-gcc.o && mpifccpx fftw-gcc.o $LDFLAGS -o fftw-gcc.elf
+#gcc -c fftwsample.c -o fftw-gcc.o && mpifccpx fftw-gcc.o $LDFLAGS -o fftw-gcc.elf
+#これでもコンパイルできる
+#gcc -c fftwsample.c $LDFLAGS -o fftw-gcc.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
@@ -39,7 +41,12 @@ fi
 
 echo "計算ノード向け(Fortran)"
 
-gfortran -c fftwsample.c -o fftw-gfort.o && mpifccpx fftw-gfort.o $LDFLAGS -o fftw-gfort.elf
+LDFLAGS="-L /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.11.1/fftw-3.3.10-upvlzylw3inllggvpvxppuar7copfqdg/lib -lfftw3"
+gfortran -c fftwsample.f90 -o fftw-gfort.o && mpifccpx fftw-gfort.o $LDFLAGS -o fftw-gfort.elf
+
+#これならコンパイルできる
+#LDFLAGS="-L /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.11.1/fftw-3.3.10-upvlzylw3inllggvpvxppuar7copfqdg/lib -lfftw3"
+#gfortran -o fftw-gfort.o fftwsample.f90 $LDFLAGS
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
