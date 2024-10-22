@@ -45,12 +45,12 @@ echo "library path="
 #すべての互換性のあるhdf5インクルードパスにはmodファイルがないためコンパイルできない
 LDFLAGS="-lhdf5_fortran -lhdf5"
 
-ifx $LDFLAGS hdfsample.f90
+ifx $LDFLAGS hdfsample.f90 -o hdf-f-intel.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
     echo "コンパイル成功！"
-    ./hdf-c-intel.elf
+    ./hdf-f-intel.elf
 else
     echo "ERROR コンパイル失敗。"
 fi
