@@ -42,7 +42,9 @@ fi
 
 echo "計算ノード向け(Fortran)"
 
-gfortran -c hdfsample.c -o hdf-gfort.o && mpifccpx hdf-gfort.o $LDFLAGS -o hdf-gfort.elf
+LDFLAGS="-I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/hdf5-1.14.3-yhazdvld6vknkhmbcqrbl34ifsac2hao/include -lhdf5"
+
+gfortran -c hdfsample.f90 -o hdf-gfort.o $LDFLAGS && mpifccpx hdf-gfort.o $LDFLAGS -o hdf-gfort.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then

@@ -41,8 +41,9 @@ else
 fi
 
 echo "ログインノード向け(Fortran)"
+LDFLAGS="-I /vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-skylake_avx512/gcc-8.5.0/hdf5-1.14.3-zzyvoybcgclhlgg2iktuygzyoeoi3int/include -lhdf5"
 
-gfortran hdfsample.c $LDFLAGS -o hdf-gfort-x86.elf
+gfortran hdfsample.f90 $LDFLAGS -o hdf-gfort-x86.elf
 
 # コンパイルの成功を確認
 if [ $? -eq 0 ]; then
